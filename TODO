@@ -1,0 +1,10 @@
+CNtwerflli:ChefCentOS twer$ vagrant ssh
+Last login: Fri Mar  7 16:57:20 2014 from 10.0.2.2
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
+
+solve the warning
+
+[vagrant@localhost ~]$ cat /etc/issue
+CentOS release 6.5 (Final)
+
+$ sudo yum install -y rpm-build
