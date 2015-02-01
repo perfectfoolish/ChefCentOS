@@ -6,6 +6,7 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
+  config.vbguest.auto_update = false
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -14,6 +15,41 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "chef/centos-6.5"
 
+  config.vm.define "client" do |c|
+    config.vm.box = "chef/centos-6.5"
+    c.vm.network "private_network", ip: "192.168.80.8"
+    config.vm.provider "virtualbox" do |v|
+      v.name = "client"
+    end
+    config.vm.hostname = "client.tw"
+  end
+
+  config.vm.define "LoadBalancer" do |l|
+    config.vm.box = "chef/centos-6.5"
+    l.vm.network "private_network", ip: "192.168.80.2"
+    config.vm.provider "virtualbox" do |v|
+      v.name = "LoadBalancer"
+    end
+    config.vm.hostname = "lb.tw"
+  end
+
+  config.vm.define "server1" do |s|
+    config.vm.box = "chef/centos-6.5"
+    s.vm.network "private_network", ip: "192.168.80.3"
+    config.vm.provider "virtualbox" do |v|
+      v.name = "server1"
+    end
+    config.vm.hostname = "s1.tw"
+  end
+
+  config.vm.define "server2" do |s|
+    config.vm.box = "chef/centos-6.5"
+    s.vm.network "private_network", ip: "192.168.80.4"
+    config.vm.provider "virtualbox" do |v|
+      v.name = "server2"
+    end
+    config.vm.hostname = "s2.tw"
+  end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
