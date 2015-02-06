@@ -1,10 +1,64 @@
+ifconfig eth0 | grep inet | awk '{ print $2 }'
+
+Use docker and chef
+Install: use chef to provision the machine
+
+Study build rpm
+$ sudo yum install -y rpm-build
+rpmbuild
+|-- BUILD
+|-- BUILDROOT
+|-- RPMS
+|   `-- x86_64
+|-- SOURCES
+|   |-- cacti-0.8.8b
+|   |-- cacti-0.8.8b.tar.gz
+|   `-- security.patch
+|-- SPECS
+|   `-- cacti.spec
+`-- SRPMS
+    `-- cacti-sinoicity-0.8.8b-1centos.src.rpm
+
+yum install -y httpd
+cd /var/www/html/
+echo "test2" > index.html
+/etc/init.d/httpd start
+/etc/init.d/httpd stop
+
+STEP:
+
 CNtwerflli:ChefCentOS twer$ vagrant ssh
 Last login: Fri Mar  7 16:57:20 2014 from 10.0.2.2
 -bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
 
-solve the warning
+To solve the warning
 
 [vagrant@localhost ~]$ cat /etc/issue
 CentOS release 6.5 (Final)
 
-$ sudo yum install -y rpm-build
+Setup source
+[root@nginx ~]# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+[root@web1 ~]# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+[root@web2 ~]# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+
+yum update -y
+
+yum install -y ntp
+ntpdate us.pool.ntp.org
+
+
+yum -y install gcc pcre-devel openssl openssl-devel
+
+  nginx path prefix: "/usr/local/nginx"
+  nginx binary file: "/usr/local/nginx/sbin/nginx"
+  nginx configuration prefix: "/usr/local/nginx/conf"
+  nginx configuration file: "/usr/local/nginx/conf/nginx.conf"
+  nginx pid file: "/usr/local/nginx/logs/nginx.pid"
+  nginx error log file: "/usr/local/nginx/logs/error.log"
+  nginx http access log file: "/usr/local/nginx/logs/access.log"
+  nginx http client request body temporary files: "client_body_temp"
+  nginx dso module path: "/usr/local/nginx/modules/"
+  nginx http proxy temporary files: "proxy_temp"
+  nginx http fastcgi temporary files: "fastcgi_temp"
+  nginx http uwsgi temporary files: "uwsgi_temp"
+  nginx http scgi temporary files: "scgi_temp"
