@@ -16,37 +16,46 @@ Vagrant.configure(2) do |config|
   config.vm.box = "chef/centos-6.5"
 
   config.vm.define "client" do |c|
-    config.vm.box = "chef/centos-6.5"
-    c.vm.network "private_network", ip: "192.168.80.8"
-    config.vm.provider "virtualbox" do |v|
-      v.name = "client"
+    c.vm.network "private_network", ip: "192.168.80.7"
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "client"
+      vb.gui = false
     end
     config.vm.hostname = "client.tw"
   end
 
+  config.vm.define "lbbackup" do |c|
+    c.vm.network "private_network", ip: "192.168.80.8"
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "lbbackup"
+      vb.gui = false
+    end
+    config.vm.hostname = "lbbackup.tw"
+  end
+
   config.vm.define "LoadBalancer" do |l|
-    config.vm.box = "chef/centos-6.5"
     l.vm.network "private_network", ip: "192.168.80.2"
-    config.vm.provider "virtualbox" do |v|
-      v.name = "LoadBalancer"
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "LoadBalancer"
+      vb.gui = false
     end
     config.vm.hostname = "lb.tw"
   end
 
   config.vm.define "server1" do |s|
-    config.vm.box = "chef/centos-6.5"
     s.vm.network "private_network", ip: "192.168.80.3"
-    config.vm.provider "virtualbox" do |v|
-      v.name = "server1"
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "server1"
+      vb.gui = false
     end
     config.vm.hostname = "s1.tw"
   end
 
   config.vm.define "server2" do |s|
-    config.vm.box = "chef/centos-6.5"
     s.vm.network "private_network", ip: "192.168.80.4"
-    config.vm.provider "virtualbox" do |v|
-      v.name = "server2"
+    config.vm.provider "virtualbox" do |vb|
+      vb.name = "server2"
+      vb.gui = false
     end
     config.vm.hostname = "s2.tw"
   end
