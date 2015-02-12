@@ -24,6 +24,7 @@ cd /var/www/html/
 echo "test2" > index.html
 /etc/init.d/httpd start
 /etc/init.d/httpd stop
+# chkconfig httpd on
 
 STEP:
 
@@ -38,8 +39,6 @@ CentOS release 6.5 (Final)
 
 Setup source
 [root@nginx ~]# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-[root@web1 ~]# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-[root@web2 ~]# rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 yum update -y
 
@@ -62,3 +61,5 @@ yum -y install gcc pcre-devel openssl openssl-devel
   nginx http fastcgi temporary files: "fastcgi_temp"
   nginx http uwsgi temporary files: "uwsgi_temp"
   nginx http scgi temporary files: "scgi_temp"
+
+# chkconfig keepalived on
